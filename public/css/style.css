@@ -23,7 +23,7 @@
 }
 
 /*Footer*/
-a:hover{
+.link-hover a:hover{
     text-decoration:none;
     color: #f2fc04 !important;
 }

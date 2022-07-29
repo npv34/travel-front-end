@@ -45,11 +45,12 @@
             </div>
             <div class="col-12 col-md-8">
                 <div class="row">
+                    <h3><%= data.length%> kết quả tìm kiếm</h3>
                     <% data.forEach((item, index) => {%>
                     <div class="col-12 m-2">
                         <h5><%= item.tengoi.value %></h5>
-                        <p><%= item.diachi.value %></p>
-                        <a href="/visited?name=<%= item.tengoi.value %>">[Chi tiết]</a>
+                        <p>Địa chỉ: <%= item.diachi.value %></p>
+                        <a href="/visited?name=<%= item.tengoi.value %>&address=<%= item.diachi.value %>">[Chi tiết]</a>
                     </div>
                     <% }) %>
                 </div>

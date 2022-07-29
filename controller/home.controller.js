@@ -24,18 +24,39 @@ class HomeController  {
         let keyword = req.query.keyword;
         this.jenaService.findByKeyword(keyword).then(r => {
             let results = r.results.bindings
+            results = [...new Map(results.map((item, key) => [item.tengoi.value, item])).values()]
             res.render('search', {data: results})
         }).catch(err => {
             console.log(err.message)
         });
     }
 
-    getDetailLocation(req, res, next) {
+    async getDetailLocation(req, res, next) {
         let name = req.query.name;
-        this.jenaService.getDetail(name).then(r => {
-            console.log(r.results.bindings)
-            res.end()
-        })
+        let address = req.query.address;
+        let visited = await this.jenaService.getDetail(name);
+        let subject = visited.results.bindings[0].subject.value.split('#')[1]
+        // ten goi khac
+        let nameOther = await this.jenaService.getOtherNameVisited(subject);
+        // diem du lich o gan
+        let listLocationNearTheArea = await this.jenaService.getLocationNearTheArea(subject);
+
+        let listAccommodationFacility = await this.jenaService.getAccommodationFacility(subject);
+        let listAcF = listAccommodationFacility.results.bindings.splice(0,10);
+
+        let listEating = await this.jenaService.nearbyEatingEstablishments(subject);
+        let listShopping = await this.jenaService.getListShopping(subject)
+
+        let data = {
+            nameVisited: name,
+            addressVisited: address,
+            nameOther: nameOther.results.bindings.toString(),
+            listLocationNearTheArea: listLocationNearTheArea.results.bindings,
+            listHotel: listAcF,
+            listEating: listEating.results.bindings,
+            listShop: listShopping.results.bindings
+        }
+        res.render('visited', {data})
     }
 
 

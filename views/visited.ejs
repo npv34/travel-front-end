@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container-fluid border">
+    <div class="col-12 header-page">
+        <!-- Image and text -->
+        <%- include('layouts/header')%>
+
+        <hr class="" style="border:2px solid black;">
+    </div>
+    <div class="col-12">
+        <nav class="col-12 navbar navbar-light text-center">
+            <div class="row col-12">
+                <div class="col-12 col-md-4">
+                    <a href="/" class="btn btn-success text-uppercase" style="border-radius:20px; color: #f2fc04;">Trang chủ</a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <form action="/search">
+                        <div class="col-12 col-md-12 form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input type="text" class="form-control" name="keyword" placeholder="Search" style="border-radius: 20px; border: 2px solid black;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="col-12 col-md-12">
+        <div class="row">
+            <div class="col-12 col-md-4">
+
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3><%= data.nameVisited %></h3>
+                        <p>Địa chỉ: <%= data.addressVisited %></p>
+                        <p>Tên gọi khác: <%= data.nameOther%></p>
+                    </div>
+
+                </div>
+                <hr>
+                <% if (data.listLocationNearTheArea.length > 0) { %>
+                <div class="col-12 col-md-12">
+                    <h5>Gợi ý các điểm quanh khu vực này</h5>
+                    <ul>
+                        <li><a href="">dsads</a></li>
+                    </ul>
+                </div>
+                <% } %>
+
+                <% if (data.listHotel.length > 0) { %>
+                <div class="col-12 col-md-12">
+                    <h5>Gợi ý các cơ sở lưu trú quanh khu vực này</h5>
+                    <ul>
+                        <% data.listHotel.forEach((item) => {%>
+                        <li><a href=""><%= item.tengoi.value %></a></li>
+                        <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+
+                <% if (data.listEating.length > 0) { %>
+                    <div class="col-12 col-md-12">
+                        <h5>Gợi ý các cơ sở ăn uống quanh khu vực này</h5>
+                        <ul>
+                            <% data.listEating.forEach((item) => {%>
+                                <li><a href=""><%= item.tengoi.value %></a></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                <% } %>
+                <% if (data.listShop.length > 0) { %>
+                    <div class="col-12 col-md-12">
+                        <h5>Gợi ý các cơ sở ăn uống quanh khu vực này</h5>
+                        <ul>
+                            <% data.listShop.forEach((item) => {%>
+                                <li><a href=""><%= item.tengoi.value %></a></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%- include('layouts/footer')%>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
