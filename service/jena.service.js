@@ -17,6 +17,22 @@ class JenaService {
         return await this.querySparql(query)
     }
 
+    async findHotelByKeyword(keyword) {
+        const query = `
+            PREFIX etourism: <http://www.semanticweb.org/vinhpt13/ontologies/2022/5/etourism#>
+            SELECT ?subject ?tengoi ?diachi ?sodienthoai ?trangweb ?danhgia ?soluongdanhgia
+            WHERE { ?subject
+            etourism:ten_goi ?tengoi;
+            etourism:dia_chi ?diachi;
+            etourism:so_dien_thoai ?sodienthoai;
+            etourism:trang_web ?trangweb;
+            etourism:danh_gia ?danhgia;
+            etourism:so_luong_danh_gia ?soluongdanhgia;
+            FILTER regex(?tengoi, "${keyword}")
+            }`
+        return await this.querySparql(query)
+    }
+
     querySparql(query) {
         const client = new SparqlClient(endpoint);
         return new Promise((resolve, reject) => {
@@ -61,7 +77,7 @@ class JenaService {
            SELECT ?subject ?tengoi ?diachi
 	       WHERE { ?subject
 		   etourism:o_gan etourism:${subject};
-		   rdf:type etourism:Lưu_trú;
+		   rdf:type etourism:Điểm_đến;
 		   etourism:ten_goi ?tengoi;
 		   etourism:dia_chi ?diachi;
            }`;

@@ -45,34 +45,33 @@
             </div>
             <div class="col-12 col-md-8">
                 <div class="row">
-                    <div class="col-12 col-md-6">
-                        <h3><%= data.nameVisited %></h3>
-                        <p>Địa chỉ: <%= data.addressVisited %></p>
-                        <% if (data.nameOther) {%>
-                        <p>Tên gọi khác: <%= data.nameOther%></p>
-                        <% } %>
+                    <div class="col-12 col-md-12">
+                        <h3><%= data.infoHotel.tengoi.value %></h3>
+                        <p>Địa chỉ: <%= data.infoHotel.diachi.value %></p>
+                        <p>Điện thoại: <%= data.infoHotel.sodienthoai.value %></p>
+                        <p>Website: <a href="<%= data.infoHotel.trangweb.value %>"><%= data.infoHotel.trangweb.value %></a></p>
+                        <p>Đánh giá: <%= data.infoHotel.danhgia.value %> (<%= data.infoHotel.soluongdanhgia.value %> lượt đánh giá trên Google)</p>
                     </div>
-
                 </div>
                 <hr>
                 <% if (data.listLocationNearTheArea.length > 0) { %>
-                <div class="col-12 col-md-12">
-                    <h5>Gợi ý các điểm du lịch quanh khu vực này</h5>
-                    <ul>
-                        <li><a href="">dsads</a></li>
-                    </ul>
-                </div>
+                    <div class="col-12 col-md-12">
+                        <h5>Gợi ý các điểm du lịch quanh khu vực này</h5>
+                        <ul>
+                            <li><a href="">dsads</a></li>
+                        </ul>
+                    </div>
                 <% } %>
 
                 <% if (data.listHotel.length > 0) { %>
-                <div class="col-12 col-md-12">
-                    <h5>Gợi ý các cơ sở lưu trú quanh khu vực này</h5>
-                    <ul>
-                        <% data.listHotel.forEach((item) => {%>
-                        <li><a href=""><%= item.tengoi.value %></a></li>
-                        <% }) %>
-                    </ul>
-                </div>
+                    <div class="col-12 col-md-12">
+                        <h5>Gợi ý các cơ sở lưu trú quanh khu vực này</h5>
+                        <ul>
+                            <% data.listHotel.forEach((item) => {%>
+                                <li><a href=""><%= item.tengoi.value %></a></li>
+                            <% }) %>
+                        </ul>
+                    </div>
                 <% } %>
 
                 <% if (data.listEating.length > 0) { %>
@@ -95,6 +94,7 @@
                         </ul>
                     </div>
                 <% } %>
+
             </div>
         </div>
     </div>
