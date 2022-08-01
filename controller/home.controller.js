@@ -31,7 +31,6 @@ class HomeController  {
 
             let listLocationNearTheArea = await this.jenaService.getLocationNearTheArea(subject);
 
-
             let listAccommodationFacility = await this.jenaService.getAccommodationFacility(subject);
             let listAcF = listAccommodationFacility.results.bindings.splice(0,10);
 
@@ -50,7 +49,7 @@ class HomeController  {
         } else {
             this.jenaService.findByKeyword(keyword).then(r => {
                 let results = r.results.bindings
-                results = [...new Map(results.map((item, key) => [item.tengoi.value, item])).values()]
+               // results = [...new Map(results.map((item, key) => [item.tengoi.value, item])).values()]
                 res.render('search', {data: results})
             }).catch(err => {
                 console.log(err.message)
@@ -62,9 +61,17 @@ class HomeController  {
         let name = req.query.name;
         let address = req.query.address;
         let visited = await this.jenaService.getDetail(name);
+
         let subject = visited.results.bindings[0].subject.value.split('#')[1]
+
         // ten goi khac
         let nameOther = await this.jenaService.getOtherNameVisited(subject);
+
+        let arrNameOther = []
+
+        nameOther.results.bindings.forEach(item => {
+            arrNameOther.push(item.tengoi.value)
+        })
         // diem du lich o gan
         let listLocationNearTheArea = await this.jenaService.getLocationNearTheArea(subject);
 
@@ -77,7 +84,7 @@ class HomeController  {
         let data = {
             nameVisited: name,
             addressVisited: address,
-            nameOther: nameOther.results.bindings.toString(),
+            nameOther: arrNameOther.toString(),
             listLocationNearTheArea: listLocationNearTheArea.results.bindings,
             listHotel: listAcF,
             listEating: listEating.results.bindings,
@@ -85,7 +92,6 @@ class HomeController  {
         }
         res.render('visited', {data})
     }
-
 
 }
 
