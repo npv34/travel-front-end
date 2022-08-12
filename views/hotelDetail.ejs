@@ -58,7 +58,9 @@
                     <div class="col-12 col-md-12">
                         <h5>Gợi ý các điểm du lịch quanh khu vực này</h5>
                         <ul>
-                            <li><a href="">dsads</a></li>
+                            <% data.listLocationNearTheArea.forEach((item) => {%>
+                                <li><a href="/visited?name=<%= item.tengoi.value %>&address=<%= item.diachi.value %>"><%= item.tengoi.value %></a></li>
+                            <% }) %>
                         </ul>
                     </div>
                 <% } %>
@@ -68,7 +70,7 @@
                         <h5>Gợi ý các cơ sở lưu trú quanh khu vực này</h5>
                         <ul>
                             <% data.listHotel.forEach((item) => {%>
-                                <li><a href=""><%= item.tengoi.value %></a></li>
+                                <li><a href="/stay/detail?keyword=<%= item.tengoi.value %>"><%= item.tengoi.value %></a></li>
                             <% }) %>
                         </ul>
                     </div>
@@ -79,17 +81,17 @@
                         <h5>Gợi ý các cơ sở ăn uống quanh khu vực này</h5>
                         <ul>
                             <% data.listEating.forEach((item) => {%>
-                                <li><a href=""><%= item.tengoi.value %></a></li>
+                                <li><a href="/eating/detail?name=<%= item.tengoi.value %>"><%= item.tengoi.value %></a></li>
                             <% }) %>
                         </ul>
                     </div>
                 <% } %>
                 <% if (data.listShop.length > 0) { %>
                     <div class="col-12 col-md-12">
-                        <h5>Gợi ý các cơ sở ăn uống quanh khu vực này</h5>
+                        <h5>Gợi ý các cơ sở mua sắm quanh khu vực này</h5>
                         <ul>
                             <% data.listShop.forEach((item) => {%>
-                                <li><a href=""><%= item.tengoi.value %></a></li>
+                                <li><a href="/paying/detail?name=<%= item.tengoi.value %>&address=<%= item.diachi.value %>"><%= item.tengoi.value %></a></li>
                             <% }) %>
                         </ul>
                     </div>

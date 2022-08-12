@@ -44,7 +44,7 @@
                     <div class="col-12 col-md-3 mt-5">
                         <div class="card bg-success">
                             <div class="card-body text-center link-hover">
-                                <a href="location?name=<%= city.name%>" class="text-uppercase " style="text-decoration: none; color:white"><%= city.name%></a>
+                                <a href="location?name=<%= city.subject.value.split('#')[1]%>" class="text-uppercase " style="text-decoration: none; color:white"><%= city.subject.value.split('#')[1].replace(/_/gi, " ")%></a>
                             </div>
                         </div>
                     </div>

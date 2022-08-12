@@ -25,7 +25,7 @@
         <nav class="col-12 navbar navbar-light text-center">
             <div class="row col-12">
                 <div class="col-12 col-md-4">
-                    <a href="/" class="btn btn-success text-uppercase" style="border-radius:20px; color: #f2fc04;">Trang chủ</a> >> <%= city.name %>
+                    <a href="/" class="btn btn-success text-uppercase" style="border-radius:20px; color: #f2fc04;">Trang chủ</a> >> <%= city.name.replace(/_/gi, " ") %>
                 </div>
                 <div class="col-12 col-md-4">
                     <form action="/search">
@@ -36,7 +36,7 @@
                     </form>
                 </div>
                 <div class="col-12 col-md-4">
-                    <h3>Du Lịch: <%= city.name %></h3>
+                    <h3>Du lịch: <%= city.name.replace(/_/gi, " ") %></h3>
                 </div>
             </div>
         </nav>
@@ -48,7 +48,7 @@
                     <div class="col-12 col-md-3 mr-5">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <a href="" class="text-uppercase" style="text-decoration: none; color:white">Điểm đến</a>
+                                <a href="/destination?city=<%= city.name %>" class="text-uppercase" style="text-decoration: none; color:white">Điểm đến</a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="col-12 col-md-3 mr-5 ml-5">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <a href="" class="text-uppercase" style="text-decoration: none; color:white">Ăn uống</a>
+                                <a href="/eating?city=<%= city.name %>" class="text-uppercase" style="text-decoration: none; color:white">Ăn uống</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="col-12 col-md-3 ml-5">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <a href="" class="text-uppercase" style="text-decoration: none; color:white">Lưu trú</a>
+                                <a href="/stay?city=<%= city.name %>" class="text-uppercase" style="text-decoration: none; color:white">Lưu trú</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     <div class="col-12 col-md-3 mr-5">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <a href="" class="text-uppercase" style="text-decoration: none; color:white">Mua sắm</a>
+                                <a href="/paying?city=<%= city.name %>" class="text-uppercase" style="text-decoration: none; color:white">Mua sắm</a>
                             </div>
                         </div>
                     </div>
