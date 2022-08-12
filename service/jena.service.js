@@ -20,10 +20,11 @@ class JenaService {
     async findHotelByKeyword(keyword) {
         const query = `
             PREFIX etourism: <http://www.semanticweb.org/vinhpt13/ontologies/2022/5/etourism#>
-            SELECT ?subject ?tengoi ?diachi ?sodienthoai ?trangweb ?danhgia ?soluongdanhgia
+            SELECT ?subject ?tengoi ?diachi ?sodienthoai ?trangweb ?danhgia ?soluongdanhgia ?hangsao
             WHERE { ?subject
             etourism:ten_goi ?tengoi;
             etourism:dia_chi ?diachi;
+            etourism:hang_sao ?hangsao;
             etourism:so_dien_thoai ?sodienthoai;
             etourism:trang_web ?trangweb;
             etourism:danh_gia ?danhgia;

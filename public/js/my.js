@@ -97,10 +97,11 @@ $(document).ready(function() {
                     })
 
                     function template(data) {
+                        console.log(data)
                         let html = ''
                         data.forEach((item) => {
                             html += `<div class="col-12 m-2">`
-                            html += `<h5 class="">${item.tengoi.value} (${item.danhgia.value}*)</h5>`
+                            html += `<h5 class="">${item.tengoi.value}</h5>`
                             html += `<p class="">Địa chỉ: ${item.diachi.value}</p>`;
                             html += `<p class="">Điện thoại: ${item.dienthoai.value}</p>`;
                             if (regexDomain(item.trangweb.value)) {
