@@ -1,6 +1,5 @@
 const qs = require('qs');
 const url = require('url')
-const cities = require("../data/city");
 const JenaService = require("../service/jena.service");
 
 class HomeController  {
@@ -12,7 +11,7 @@ class HomeController  {
     }
 
     async showHomePage(req, res, next) {
-        let data = await  this.jenaService.get_tinh_thanh();
+        let data = await this.jenaService.get_tinh_thanh();
         let listCity = data.results.bindings;
         res.render('home', {data: listCity})
     }
@@ -283,7 +282,6 @@ class HomeController  {
         let r = await this.jenaService.getAnUongDetail(name);
 
         let infoAnUong = r.results.bindings[0];
-        console.log(infoAnUong)
 
         let subject = infoAnUong.subject.value.split('#')[1];
 
