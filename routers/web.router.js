@@ -96,4 +96,8 @@ router.get('/error', (req, res, next) => {
     res.render('500')
 })
 
+router.get('hotel/details', (req, res, next) => {
+
+})
+
 module.exports = router;

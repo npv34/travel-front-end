@@ -28,10 +28,10 @@
                     <a href="/" class="btn btn-success text-uppercase" style="border-radius:20px; color: #f2fc04;">Trang chủ</a>
                 </div>
                 <div class="col-12 col-md-4">
-                    <form action="/search">
+                    <form action="/search" id="formSearch">
                         <div class="col-12 col-md-12 form-group has-search">
                             <span class="fa fa-search form-control-feedback"></span>
-                            <input type="text" class="form-control" name="keyword" placeholder="Search" style="border-radius: 20px; border: 2px solid black;">
+                            <input type="text" id="keyword" class="form-control" name="keyword" placeholder="Search" style="border-radius: 20px; border: 2px solid black;">
                         </div>
                     </form>
                 </div>
@@ -49,7 +49,11 @@
                         <h3><%= data.infoHotel.tengoi.value %> (<%= data.infoHotel.hangsao.value.replace(/_/gi, " ") %>)</h3>
                         <p>Địa chỉ: <%= data.infoHotel.diachi.value %></p>
                         <p>Điện thoại: <%= data.infoHotel.sodienthoai.value %></p>
+                        <% if (!data.infoHotel.trangweb.value.match(/http(s)?:\/\/(www\.)?google.com/)) {%>
                         <p>Website: <a href="<%= data.infoHotel.trangweb.value %>"><%= data.infoHotel.trangweb.value %></a></p>
+                        <% }else {%>
+                        <p>Website: Đang cập nhật</p>
+                        <% } %>
                         <p>Đánh giá: <%= data.infoHotel.danhgia.value %> (<%= data.infoHotel.soluongdanhgia.value %> lượt đánh giá trên Google)</p>
                     </div>
                 </div>

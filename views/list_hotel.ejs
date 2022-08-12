@@ -28,7 +28,7 @@
                     <a href="/" class="btn btn-success text-uppercase" style="border-radius:20px; color: #f2fc04;">Trang chủ</a>
                 </div>
                 <div class="col-12 col-md-4">
-                    <form id="formSearch" action="/search">
+                    <form action="/search">
                         <div class="col-12 col-md-12 form-group has-search">
                             <span class="fa fa-search form-control-feedback"></span>
                             <input type="text" class="form-control" name="keyword" placeholder="Search" style="border-radius: 20px; border: 2px solid black;">
@@ -47,11 +47,18 @@
                 <div class="row">
                     <h3><%= data.length %> kết quả tìm kiếm</h3>
                     <% data.forEach((item, index) => {%>
-                    <div class="col-12 m-2">
-                        <h5><%= item.tengoi.value %></h5>
-                        <p>Địa chỉ: <%= item.diachi.value %></p>
-                        <a href="/visited?name=<%= item.tengoi.value %>&address=<%= item.diachi.value %>">[Chi tiết]</a>
-                    </div>
+                        <div class="col-12 m-2">
+                            <h5><%= item.tengoi.value %></h5>
+                            <p>Địa chỉ: <%= item.diachi.value %></p>
+                            <p>Điện thoại: <%= item.sodienthoai.value %></p>
+                            <% if (!item.trangweb.value.match(/http(s)?:\/\/(www\.)?google.com/)) {%>
+                                <p>Website: <a href="<%= item.trangweb.value %>"><%= item.trangweb.value %></a></p>
+                            <% }else {%>
+                                <p>Website: Đang cập nhật</p>
+                            <% } %>
+                            <p>Đánh giá: <%= item.danhgia.value %> (<%= item.soluongdanhgia.value %> lượt đánh giá trên Google)</p>
+                            <a href="stay/detail?keyword=<%= item.tengoi.value %>&index=<%= index%>">[Chi tiết]</a>
+                        </div>
                     <% }) %>
                 </div>
 

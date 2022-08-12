@@ -25,8 +25,10 @@ class HomeController  {
         let keyword = req.query.keyword;
         if (keyword.includes('Khách Sạn')) {
             let r = await this.jenaService.findHotelByKeyword(keyword);
+            let infoHotel = r.results.bindings;
+            res.render('list_hotel', {data: infoHotel})
 
-            let infoHotel = r.results.bindings[0];
+            /*
 
             let subject = infoHotel.subject.value.split('#')[1];
 
@@ -50,6 +52,8 @@ class HomeController  {
             }
 
             res.render('hotelDetail', {data})
+
+             */
         } else {
             this.jenaService.findByKeyword(keyword).then(r => {
                 let results = r.results.bindings
@@ -158,11 +162,13 @@ class HomeController  {
 
     async getDetailLuuTrue(req, res, next) {
         let keyword = req.query.keyword;
-
+        let index = 0
+        if (req.query.index){
+            index = req.query.index
+        }
         let r = await this.jenaService.findHotelByKeyword(keyword);
 
-        let infoHotel = r.results.bindings[0];
-
+        let infoHotel = r.results.bindings[index];
 
         let subject = infoHotel.subject.value.split('#')[1];
 
